@@ -1,0 +1,48 @@
+// gui/window.c
+#include <window.h>
+#include <vesa.h>
+#include <string.h>
+#include <stdio.h>
+
+// Crear una ventana
+void create_window(uint32_t x, uint32_t y, uint32_t width, uint32_t height, const char* title) {
+    window_t window;
+    window.x = x;
+    window.y = y;
+    window.width = width;
+    window.height = height;
+    window.color = 0x0000FF;  // Color de fondo (azul)
+    strncpy(window.title, title, 50);  // Copiar el título
+
+    // Dibujar la ventana
+    draw_window(&window);
+}
+
+// Dibujar una ventana en la pantalla
+void draw_window(window_t* window) {
+    // Dibujar el fondo de la ventana
+    for (uint32_t i = window->x; i < window->x + window->width; i++) {
+        for (uint32_t j = window->y; j < window->y + window->height; j++) {
+            draw_pixel(i, j, window->color);
+        }
+    }
+
+    // Dibujar el borde de la ventana
+    uint32_t border_color = 0xFFFFFF;  // Color del borde (blanco)
+    for (uint32_t i = window->x; i < window->x + window->width; i++) {
+        draw_pixel(i, window->y, border_color);  // Borde superior
+        draw_pixel(i, window->y + window->height - 1, border_color);  // Borde inferior
+    }
+    for (uint32_t j = window->y; j < window->y + window->height; j++) {
+        draw_pixel(window->x, j, border_color);  // Borde izquierdo
+        draw_pixel(window->x + window->width - 1, j, border_color);  // Borde derecho
+    }
+
+    // Dibujar el título de la ventana
+    uint32_t title_x = window->x + 10;  // Posición X del título
+    uint32_t title_y = window->y + 10;  // Posición Y del título
+    uint32_t title_color = 0xFFFFFF;    // Color del título (blanco)
+    for (uint32_t i = 0; i < strlen(window->title); i++) {
+        draw_char(window->title[i], title_x + i * 8, title_y, title_color);
+    }
+}

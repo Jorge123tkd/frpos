@@ -1,0 +1,8 @@
+// include/screen.h
+#ifndef SCREEN_H
+#define SCREEN_H
+
+void screen_init();  // Inicializar la pantalla
+void print_char(char c, uint8_t color);  // Imprimir un carácter en pantalla
+
+#endif

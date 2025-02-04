@@ -1,0 +1,10 @@
+// kernel/network.c
+#include "network.h"
+
+void network_init() {
+    // Inicializar el controlador de red
+}
+
+void network_send_packet(uint8_t* data, uint32_t size) {
+    // Enviar un paquete de red
+}

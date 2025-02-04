@@ -1,0 +1,7 @@
+// include/kernel.h
+#ifndef KERNEL_H
+#define KERNEL_H
+
+void main();  // Punto de entrada del kernel
+
+#endif

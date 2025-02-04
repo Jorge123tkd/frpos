@@ -1,0 +1,10 @@
+// kernel/mtp.c
+#include "mtp.h"
+
+void mtp_init() {
+    // Inicializar MTP
+}
+
+void mtp_transfer_file(uint8_t* data, uint32_t size) {
+    // Transferir un archivo
+}

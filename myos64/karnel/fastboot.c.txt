@@ -1,0 +1,11 @@
+// kernel/fastboot.c
+#include <fastboot.h>
+#include <usb.h>
+
+void fastboot_start() {
+    // Iniciar modo Fastboot
+}
+
+void fastboot_flash(const char* partition, const char* image) {
+    // Flashear una partición
+}

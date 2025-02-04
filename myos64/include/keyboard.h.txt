@@ -1,0 +1,8 @@
+// include/keyboard.h
+#ifndef KEYBOARD_H
+#define KEYBOARD_H
+
+void keyboard_init();  // Inicializar el teclado
+char read_key();       // Leer una tecla del teclado
+
+#endif

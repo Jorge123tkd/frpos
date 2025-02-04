@@ -1,0 +1,26 @@
+# Makefile para Windows
+CC = gcc
+ASM = nasm
+LD = ld
+QEMU = qemu-system-x86_64
+DD = dd
+
+all: bootloader kernel disk
+
+bootloader:
+    $(ASM) -f bin boot/boot.asm -o boot/boot.bin
+
+kernel:
+    $(CC) -ffreestanding -c kernel/kernel.c -o kernel/kernel.o
+    $(LD) -nostdlib -Ttext 0x10000 kernel/kernel.o -o kernel/kernel.elf
+
+disk:
+    $(DD) if=/dev/zero of=disk.img bs=512 count=2880
+    $(DD) if=boot/boot.bin of=disk.img conv=notrunc
+    $(DD) if=kernel/kernel.elf of=disk.img bs=512 seek=1 conv=notrunc
+
+run:
+    $(QEMU) -fda disk.img
+
+clean:
+    del /Q boot\boot.bin kernel\*.o kernel\kernel.elf disk.img

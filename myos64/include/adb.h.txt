@@ -1,0 +1,8 @@
+// include/adb.h
+#ifndef ADB_H
+#define ADB_H
+
+void adb_start();  // Iniciar el servidor ADB
+void adb_command(const char* cmd);  // Ejecutar un comando ADB
+
+#endif

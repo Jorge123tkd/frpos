@@ -1,0 +1,7 @@
+// include/mtp.h
+#ifndef MTP_H
+#define MTP_H
+
+void mtp_init();  // Inicializar el protocolo MTP
+
+#endif

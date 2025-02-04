@@ -1,0 +1,11 @@
+// kernel/keyboard.c
+#include <keyboard.h>
+
+void keyboard_init() {
+    // Configurar interrupciones del teclado
+}
+
+char read_key() {
+    // Leer una tecla del teclado
+    return 0;
+}

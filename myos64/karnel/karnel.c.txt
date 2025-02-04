@@ -1,0 +1,51 @@
+// kernel/kernel.c
+#include <kernel.h>
+#include <screen.h>
+#include <keyboard.h>
+#include <usb.h>
+#include <network.h>
+#include <shell.h>
+#include <vesa.h>
+#include <window.h>
+#include <mtp.h>
+#include <adb.h>
+#include <fastboot.h>
+
+void main() {
+    // Inicializar pantalla
+    screen_init();
+
+    // Inicializar teclado
+    keyboard_init();
+
+    // Inicializar USB
+    usb_init();
+
+    // Inicializar red
+    network_init();
+
+   // Inicializar el modo gráfico VESA
+    vesa_init();
+
+    // Crear una ventana
+    create_window(100, 100, 300, 200, "Mi Ventana");
+
+
+   // Detectar dispositivos USB
+    usb_detect_devices();
+
+   // Inicializar shell
+    shell_start();
+
+   // Inicializar adb
+    adb_start();
+
+   // Inicializar fastboot
+    fastboot_start();
+
+   // Inicializar mtp
+    mtp_start();
+
+    // Bucle infinito
+    while (1);
+}

@@ -1,0 +1,39 @@
+myos64/
+├── boot/
+│   └── boot.asm
+├── kernel/
+│   ├── kernel.c
+│   ├── screen.c
+│   ├── keyboard.c
+│   ├── usb.c
+│   ├── network.c
+│   ├── mtp.c
+│   ├── adb.c
+│   ├── fastboot.c
+│   └── shell.c
+├── gui/
+│   ├── vesa.c
+│   └── window.c
+├── lib/
+│   ├── string.c
+│   ├── memory.c
+│   └── printf.c
+├── include/
+│   ├── kernel.h
+│   ├── screen.h
+│   ├── keyboard.h
+│   ├── usb.h
+│   ├── network.h
+│   ├── mtp.h
+│   ├── adb.h
+│   ├── fastboot.h
+│   ├── shell.h
+│   ├── vesa.h
+│   ├── window.h
+│   ├── font.h
+│   ├── string.h
+│   ├── memory.h
+│   ├── printf.h
+│   └── fat32.h
+├── Makefile
+└── disk.img

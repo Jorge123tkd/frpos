@@ -1,0 +1,52 @@
+// kernel/usb.c
+#include <usb.h>
+#include <screen.h>
+#include <stdio.h>
+
+// Dirección del controlador USB (esto depende del hardware)
+#define USB_CONTROLLER_BASE 0x80000000
+
+// Función para leer un registro del controlador USB
+uint32_t usb_read_register(uint32_t offset) {
+    return *(volatile uint32_t*)(USB_CONTROLLER_BASE + offset);
+}
+
+// Función para escribir en un registro del controlador USB
+void usb_write_register(uint32_t offset, uint32_t value) {
+    *(volatile uint32_t*)(USB_CONTROLLER_BASE + offset) = value;
+}
+
+// Inicializar el controlador USB
+void usb_init() {
+    printf("Inicializando controlador USB...\n");
+
+    // Habilitar el controlador USB
+    usb_write_register(0x00, 0x01);  // Habilitar bit 0 (USB Enable)
+
+    printf("Controlador USB inicializado.\n");
+}
+
+// Detectar dispositivos USB conectados
+void usb_detect_devices() {
+    printf("Detectando dispositivos USB...\n");
+
+    // Leer el registro de estado del controlador USB
+    uint32_t status = usb_read_register(0x04);  // Registro de estado
+
+    if (status & 0x01) {  // Verificar si hay un dispositivo conectado
+        printf("Dispositivo USB detectado.\n");
+
+        // Leer el descriptor del dispositivo
+        usb_device_descriptor_t descriptor;
+        usb_write_register(0x08, 0x80);  // Solicitar descriptor del dispositivo
+        for (int i = 0; i < sizeof(usb_device_descriptor_t); i++) {
+            ((uint8_t*)&descriptor)[i] = usb_read_register(0x0C);  // Leer descriptor
+        }
+
+        // Mostrar información del dispositivo
+        printf("Vendor ID: 0x%04X\n", descriptor.vendor_id);
+        printf("Product ID: 0x%04X\n", descriptor.product_id);
+    } else {
+        printf("No se detectaron dispositivos USB.\n");
+    }
+}

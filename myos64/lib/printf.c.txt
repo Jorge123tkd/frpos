@@ -1,0 +1,7 @@
+// lib/printf.c
+#include <printf.h>
+#include <screen.h>
+
+void printf(const char* format, ...) {
+    // Implementación básica de printf
+}

@@ -1,0 +1,21 @@
+// include/window.h
+#ifndef WINDOW_H
+#define WINDOW_H
+
+#include <stdint.h>
+
+// Estructura para una ventana
+typedef struct {
+    uint32_t x;          // Posición X
+    uint32_t y;          // Posición Y
+    uint32_t width;      // Ancho
+    uint32_t height;     // Alto
+    uint32_t color;      // Color de fondo
+    char title[50];      // Título de la ventana
+} window_t;
+
+// Funciones para ventanas
+void create_window(uint32_t x, uint32_t y, uint32_t width, uint32_t height, const char* title);  // Crear una ventana
+void draw_window(window_t* window);  // Dibujar una ventana en la pantalla
+
+#endif

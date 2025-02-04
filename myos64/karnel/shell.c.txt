@@ -1,0 +1,20 @@
+// kernel/shell.c
+#include <shell.h>
+#include <keyboard.h>
+#include <stdio.h>
+
+void shell_start() {
+    printf("MyOS64 Shell > ");
+    while (1) {
+        char cmd[100];
+        read_line(cmd);  // Leer entrada del usuario
+
+        if (strcmp(cmd, "adb devices") == 0) {
+            adb_command("devices");
+        } else if (strcmp(cmd, "fastboot reboot") == 0) {
+            fastboot_command("reboot");
+        } else {
+            printf("Comando no reconocido.\n");
+        }
+    }
+}

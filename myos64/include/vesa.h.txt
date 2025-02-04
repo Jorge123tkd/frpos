@@ -1,0 +1,11 @@
+// include/vesa.h
+#ifndef VESA_H
+#define VESA_H
+
+#include <stdint.h>
+
+void vesa_init();  // Inicializar el modo gráfico VESA
+void draw_pixel(uint32_t x, uint32_t y, uint32_t color);  // Dibujar un píxel
+void draw_char(char c, uint32_t x, uint32_t y, uint32_t color);  // Dibujar un carácter
+
+#endif

@@ -1,0 +1,17 @@
+// kernel/screen.c
+#include <screen.h>
+
+#define VIDEO_MEMORY 0xB8000
+
+void screen_init() {
+    // Limpiar pantalla
+    for (int i = 0; i < 80 * 25 * 2; i += 2) {
+        *(volatile uint16_t*)(VIDEO_MEMORY + i) = 0x0F00;
+    }
+}
+
+void print_char(char c, uint8_t color) {
+    static uint16_t cursor = 0;
+    *(volatile uint16_t*)(VIDEO_MEMORY + cursor) = color << 8 | c;
+    cursor += 2;
+}

@@ -1,0 +1,10 @@
+// kernel/adb.c
+#include "adb.h"
+
+void adb_start() {
+    // Iniciar el servidor ADB
+}
+
+void adb_command(const char* cmd) {
+    // Ejecutar un comando ADB
+}

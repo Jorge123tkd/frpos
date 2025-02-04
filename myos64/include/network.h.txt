@@ -1,0 +1,7 @@
+// include/network.h
+#ifndef NETWORK_H
+#define NETWORK_H
+
+void network_init();  // Inicializar el stack de red
+
+#endif

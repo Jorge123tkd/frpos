@@ -1,0 +1,8 @@
+// include/fastboot.h
+#ifndef FASTBOOT_H
+#define FASTBOOT_H
+
+void fastboot_start();  // Iniciar el modo Fastboot
+void fastboot_flash(const char* partition, const char* image);  // Flashear una partición
+
+#endif

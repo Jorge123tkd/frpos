@@ -1,0 +1,17 @@
+// gui/vesa.c
+#include <vesa.h>
+#include <font.h>  // Incluir definiciones de fuentes
+
+void draw_char(char c, uint32_t x, uint32_t y, uint32_t color) {
+    // Obtener el glifo del carácter desde la fuente
+    uint8_t* glyph = font_get_glyph(c);
+
+    // Dibujar el glifo en la pantalla
+    for (uint32_t i = 0; i < 8; i++) {
+        for (uint32_t j = 0; j < 8; j++) {
+            if (glyph[i] & (1 << (7 - j))) {
+                draw_pixel(x + j, y + i, color);
+            }
+        }
+    }
+}
